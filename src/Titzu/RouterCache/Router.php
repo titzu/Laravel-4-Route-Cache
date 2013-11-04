@@ -24,7 +24,7 @@ class Router extends \Illuminate\Routing\Router {
         $this->filter('cache_get', function($route, $request, $response = null) use ($self) {
             $key = $self::getCacheKey($request);
             $container = $self->getContainer();
-            $self::setResponseFromCache($container["cache"]->driver(), $key);
+            return $self::setResponseFromCache($container["cache"]->driver(), $key);
         });
     }
     
