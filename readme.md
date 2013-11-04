@@ -31,21 +31,17 @@ That's all!
 You must register the filter with the route
   
 ```php
-
-    Route::get('/', array('before' => 'cache_get', 'after' => 'cache_set', 'uses' => 'HomeController@show'));
-
+Route::get('/', array('before' => 'cache_get', 'after' => 'cache_set', 'uses' => 'HomeController@show'));
 ```
 
 Of course you can also register a group of routes
 
 ```php
-
-    Route::group(array('before' => 'cache_get', 'after' => 'cache_set'), function()
-    {
-        Route::get('/', 'HomeController@show');
-        Route::get('another', 'AnotherController@show');
-    });
-
+Route::group(array('before' => 'cache_get', 'after' => 'cache_set'), function()
+{
+    Route::get('/', 'HomeController@show');
+    Route::get('another', 'AnotherController@show');
+});
 ```
 
 ## Clear Routes Cache
@@ -61,17 +57,13 @@ The router:clear command will then only operate on the keys registered in cached
 In order to verify that the request is served from the cache or on the fly, I added a new header entry
 
 ```php
-
-    $response->header('Served-From', 'cache');
-
+$response->header('Served-From', 'cache');
 ```
 
 and 
 
 ```php
-
-    $response->header('Served-From', 'laravel');
-
+$response->header('Served-From', 'laravel');
 ```
 
 You can then find this using entry developer tools ( firebug for example ).
